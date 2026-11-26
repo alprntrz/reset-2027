@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Join my Duo on Reset 2027</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Reset 2027</h1>
+    <div id="invite" hidden>
+      <p>You're invited to a Duo. Your code:</p>
+      <h2 id="code"></h2>
+      <p><a id="open">Open in Reset 2027</a></p>
+      <p class="muted">Don't have the app yet? <a href="https://apps.apple.com/app/id6837451396">Get it on the App Store</a>,
+      then tap this link again or type the code in the Duo tab.</p>
+    </div>
+    <p id="invalid">This invite link isn't valid. Ask your friend to send it again.</p>
+  </main>
+  <script>
+    // Same alphabet as DuoCode in the app. The value comes from the URL, so it is checked before use.
+    const code = (new URLSearchParams(location.search).get('c') || '').toUpperCase();
+    if (/^[A-HJKMNP-Z2-9]{6}$/.test(code)) {
+      document.getElementById('code').textContent = code;
+      document.getElementById('open').href = 'reset2027://duo/' + code;
+      document.getElementById('invite').hidden = false;
+      document.getElementById('invalid').hidden = true;
+    }
+  </script>
+</body>
+</html>
